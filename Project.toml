@@ -1,0 +1,4 @@
+name = "MRFTLROptimisation"
+uuid = "153335b5-6efd-4d36-ae09-8d23c915f5e6"
+authors = ["Felix Horger <felix.horger@kcl.ac.uk>"]
+version = "0.1.0"
