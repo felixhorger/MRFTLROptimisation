@@ -66,7 +66,7 @@ for i in eachindex(names_short)
 	axs[2].bar([i-0.2], conditionings_before; width=0.2, color="tab:blue", label=label[1])
 	axs[2].bar([i], conditionings[i][end]; width=0.2, color="tab:orange", label=label[2])
 	axs[2].bar([i+0.15], [caspr_conditionings[i][1]]; width=0.1, color="tab:green", linewidth=0.2, edgecolor="black", label=label[3])
-	axs[2].bar([i+0.25], [caspr_conditionings[i][2]]; width=0.1, color="tab:green", linewidth=0.2, edgecolor="black", hatch="////", label=label[4])
+	axs[2].bar([i+0.25], [caspr_conditionings[i][2]]; width=0.1, color="green", linewidth=0.2, edgecolor="black", hatch="////", label=label[4])
 end
 axs[1].set_xticks(1:4)
 axs[1].set_xticklabels(names_short)
@@ -92,6 +92,16 @@ fig, axs = plt.subplots(4, 4 * 4, figsize=(22, PyPlotTools.latex_column))
 plt.subplots_adjust(hspace=-0.1, wspace=0.05)
 fig.suptitle("\\hspace*{$(-Δ * 0.0)in} Jiang \\hspace*{$(Δ*0.9)in} Zhao \\hspace*{$(Δ*0.9)in} Koolstra \\hspace*{$(Δ*0.9)in} Fast cycle", y=1.08, fontsize=20)
 foreach(s -> axs[s, 1].set_ylabel("\$\\sigma_$s\$"), 1:num_σ)
+axsep = plt.axes([0.0, 0.0, 1.0, 1.1])
+axsep.set_xlim([0, 1])
+axsep.set_ylim([0, 1])
+axsep.set_axis_off()
+ϵ = 0.0008
+axsep.plot([0.25-ϵ, 0.25-ϵ], [0.0, 1.0], color="darkblue", lw=2)
+ϵ = 0.0001
+axsep.plot([0.5-ϵ, 0.5-ϵ], [0.0, 1.0], color="darkblue", lw=2)
+ϵ = -0.0008
+axsep.plot([0.75-ϵ, 0.75-ϵ], [0.0, 1.0], color="darkblue", lw=2)
 for i in eachindex(names_short)
 	randomuniform = load("../fully_sampled_criterion/" * files[i], "recon")
 	optimiseduniform = lr_inversion_recons[i][1]

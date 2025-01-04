@@ -89,7 +89,10 @@ num_σ = 4
 VH_Jiang = load("../schedules/Jiang2014/compressed_dictionary.jld2", "transform")[1:num_σ, 2:end];
 VH_Zhao = load("../schedules/Zhao2019/compressed_dictionary.jld2", "transform")[1:num_σ, 2:end];
 VH_Koolstra = load("../schedules/Koolstra2018/compressed_dictionary.jld2", "transform")[1:num_σ, 2:end];
-VH_FastCycle = load("../schedules/FastCycle/compressed_dictionary.jld2", "transform")[1:num_σ, 1:end]; # Inversion pulse included here
+VH_FastCycle = load("../schedules/FastCycle/compressed_dictionary.jld2", "transform")[1:num_σ, 1:end];
+#= Inversion pulse included for Fast cycle, because signal is non-zero after inversion because driven equilibrium.
+# For the other schedules, starting from thermal equilibrium, the inversion gives zero signal and must hence
+be excluded =#
 
 best_samplings_Jiang, best_conditionings_Jiang, best_iterations_Jiang = optimise_sampling(VH_Jiang[1:num_σ, :])
 best_samplings_Zhao, best_conditionings_Zhao, best_iterations_Zhao = optimise_sampling(VH_Zhao[1:num_σ, :])
